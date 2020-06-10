@@ -44,16 +44,16 @@ function Person(name, age) {
   this.stomach = [];
 }
 Person.prototype.eat = function(food) {
-  if (this.stomach.length < 10) {
+  if (this.stomach.length < 10) { //as long as stomach array doesn't have 10 items, we can still push.
     this.stomach.push(food);
   }
-};
+}
 Person.prototype.poop = function() {
-  this.stomach.splice(0, this.stomach.length);
-};
+  this.stomach = []; //poops out the array to become empty.
+}
 Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`;
-};
+}
 
 /*
   TASK 2
@@ -77,19 +77,17 @@ function Car(model, milesPerGallon) {
 }
 
 Car.prototype.fill = function(gallons) {
-  return (this.tank += gallons);
-};
+  return this.tank += gallons;
+}
 Car.prototype.drive = function(distance) {
-  if (this.tank > 1){
-    this.odometer += distance;
-    this.tank = this.tank - (distance/this.milesPerGallon);
+  this.odometer += distance;
+  this.tank -= distance/this.milesPerGallon;
+  if(this.tank < 0){
+    this.odometer += this.tank*this.milesPerGallon; //subtracts miles not driven from odometer that was added after tank hit below empty. Assuming tank becomes negative in calculation.
+    this.tank = 0; //sets tank empty because there's no such thing as negative gallons in tank.
+    return `I ran out of fuel at ${this.odometer} miles!`;
   }
-  if(this.tank <=0){
-    this.odometer -= ((-1)*this.tank)*this.milesPerGallon;
-    this.tank = 0;
-    return `I ran out of fuel at ${this.odometer} miles!`
-  }
-};
+}
 
 /*
   TASK 3
@@ -105,7 +103,7 @@ function Baby(name, age, favoriteToy) {
 Baby.prototype = Object.create(Person.prototype);
 Baby.prototype.play = function() {
   return `Playing with ${this.favoriteToy}`;
-};
+}
 /* 
   TASK 4
 
