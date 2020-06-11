@@ -108,10 +108,10 @@ Baby.prototype.play = function() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. In the global scope, it refers to the global object.
+  2. In implicit binding, if a dot calls a method, the object before the dot is `this`.
+  3. In new binding, whenever a new object is created, the new object is `this` at the current instance.
+  4. In explicit binding, this will refer to the object passed as arguments of .call(), .apply(), or .bind() even if the method called is a property of a different object.
 */
 
 ///////// END OF CHALLENGE /////////
