@@ -82,7 +82,7 @@ Car.prototype.fill = function(gallons) {
 Car.prototype.drive = function(distance) {
   this.odometer += distance;
   this.tank -= distance/this.milesPerGallon;
-  if(this.tank < 0){
+  if(this.tank <= 0){
     this.odometer += this.tank*this.milesPerGallon; //subtracts miles not driven from odometer that was added after tank hit below empty. Assuming tank becomes negative in calculation.
     this.tank = 0; //sets tank empty because there's no such thing as negative gallons in tank.
     return `I ran out of fuel at ${this.odometer} miles!`;
